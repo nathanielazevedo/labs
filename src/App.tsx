@@ -1,57 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { Box, createTheme, CssBaseline, ThemeProvider } from "@mui/material";
+import TopNav from "./components/AppBar";
+import SideNav from "./components/SideNav";
+import Content from "./components/Content";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    background: {
+      default: "#081624",
+      paper: "#081624",
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <Box
+        display="flex"
+        flexDirection="column"
+        sx={{ height: "100vh", width: "100vw" }}
+      >
+        <CssBaseline />
+        <TopNav />
+        <Box display="flex" flexDirection="row" sx={{ height: "100%" }}>
+          <SideNav />
+          <Content />
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
