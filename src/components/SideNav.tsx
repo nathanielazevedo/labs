@@ -1,18 +1,22 @@
 import * as React from "react";
 import { styled, Theme, CSSObject } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import MuiDrawer from "@mui/material/Drawer";
-import List from "@mui/material/List";
-import Divider from "@mui/material/Divider";
-import IconButton from "@mui/material/IconButton";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import MailIcon from "@mui/icons-material/Mail";
+import {
+  Box,
+  Drawer as MuiDrawer,
+  List,
+  IconButton,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
+import {
+  Home as HomeIcon,
+  Groups as GroupsIcon,
+  ChevronLeft as ChevronLeftIcon,
+  ChevronRight as ChevronRightIcon,
+} from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
@@ -37,14 +41,13 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled("div")(({ theme }) => ({
+const DrawerToggle = styled("div")(({ theme }) => ({
   display: "flex",
   flex: 1,
   flexDirection: "column",
   alignSelf: "flex-end",
   justifyContent: "flex-end",
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
@@ -73,6 +76,16 @@ export default function MiniDrawer() {
     open ? setOpen(false) : setOpen(true);
   };
 
+  type IconMapperType = {
+    Basics: any;
+    Team: any;
+  };
+
+  const IconMapper = {
+    Basics: <HomeIcon />,
+    Team: <GroupsIcon />,
+  } as IconMapperType;
+
   return (
     <Box sx={{ display: "flex", zIndex: "0" }}>
       <Drawer
@@ -82,36 +95,40 @@ export default function MiniDrawer() {
         PaperProps={{ sx: { position: "relative" } }}
       >
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem key={text} disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  color: "grey.500",
-                }}
-              >
-                <ListItemIcon
+          {["Basics", "Team"].map((text, index) => (
+            <Link
+              to={`/${text}`}
+              style={{ textDecoration: "none", color: "inherit" }}
+            >
+              <ListItem key={text} disablePadding sx={{ display: "block" }}>
+                <ListItemButton
                   sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                    color: "grey.500",
+                    minHeight: 48,
+                    justifyContent: open ? "initial" : "center",
+                    px: 2.5,
                   }}
                 >
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
-            </ListItem>
+                  <ListItemIcon
+                    sx={{
+                      minWidth: 0,
+                      fontSize: 10,
+                      mr: open ? 3 : "auto",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {IconMapper[text as keyof IconMapperType]}
+                  </ListItemIcon>
+                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
-        <DrawerHeader sx={{ marginBottom: "10px" }}>
+        <DrawerToggle sx={{ marginBottom: "10px" }}>
           <IconButton onClick={handleDrawer} sx={{ color: "grey.500" }}>
             {!open ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerToggle>
       </Drawer>
     </Box>
   );

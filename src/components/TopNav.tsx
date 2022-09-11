@@ -17,12 +17,8 @@ function TopNav() {
         position: "relative",
       }}
     >
-      <Typography variant="subtitle1" color="grey.400">
-        / main / labs / akamatsu
-      </Typography>
-      <Typography variant="subtitle1" color="common.light">
-        Akamatsu Lab
-      </Typography>
+      <Typography variant="subtitle1">/ main / labs / akamatsu</Typography>
+      <Typography variant="subtitle1">Akamatsu Lab</Typography>
     </AppBar>
   );
 }
