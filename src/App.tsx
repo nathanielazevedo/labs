@@ -9,6 +9,7 @@ import { Routes, Route } from "react-router-dom";
 import Login from "./apps/Auth/Login";
 import LabMembersGrid from "./apps/LabManagers/LabMembersGrid";
 import LabMain from "./apps/LabManagers/LabMain";
+import BasePage from "./components/BasePage";
 
 const darkTheme = createTheme({
   palette: {
@@ -33,23 +34,21 @@ function App() {
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route
-              path="lab"
+              path="Basics"
               element={
-                <>
-                  <TopNav />
-                  <Box
-                    display="flex"
-                    flexDirection="row"
-                    sx={{ height: "100%" }}
-                  >
-                    <SideNav />
-                    <Content />
-                  </Box>
-                </>
+                <BasePage>
+                  <LabMain />
+                </BasePage>
               }
             />
-            <Route path="Basics" element={<LabMain />} />
-            <Route path="Team" element={<LabMembersGrid />} />
+            <Route
+              path="Team"
+              element={
+                <BasePage>
+                  <LabMembersGrid />
+                </BasePage>
+              }
+            />
           </Routes>
         </Box>
       </ThemeProvider>

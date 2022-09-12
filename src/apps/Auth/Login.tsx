@@ -1,13 +1,16 @@
 import { Box, TextField, Typography, Button, Card } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
   const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleLogin = () => {
-    navigate("/");
+    console.log(formData);
+    navigate("/Basics");
   };
+
   return (
     <Box
       display="flex"
@@ -56,6 +59,11 @@ function Login() {
             id="outlined-basic"
             label="Email"
             variant="outlined"
+            onChange={(e) =>
+              setFormData((o) => {
+                return { ...o, email: e.target.value };
+              })
+            }
             fullWidth
           />
           <TextField
@@ -63,6 +71,11 @@ function Login() {
             label="Password"
             variant="outlined"
             fullWidth
+            onChange={(e) =>
+              setFormData((o) => {
+                return { ...o, password: e.target.value };
+              })
+            }
           />
           <Button variant="contained" fullWidth onClick={handleLogin}>
             Login

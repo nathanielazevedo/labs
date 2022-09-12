@@ -18,7 +18,7 @@ function TopNav() {
       }}
     >
       <Typography variant="subtitle1">/ main / labs / akamatsu</Typography>
-      <Typography variant="subtitle1">Akamatsu Lab</Typography>
+      <Typography variant="subtitle1">Graham's Lab</Typography>
     </AppBar>
   );
 }
