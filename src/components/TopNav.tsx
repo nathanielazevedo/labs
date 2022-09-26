@@ -1,6 +1,7 @@
 import React from "react";
 import AppBar from "@mui/material/AppBar";
 import { Typography } from "@mui/material";
+import Menu from "./Menu";
 
 function TopNav() {
   return (
@@ -18,7 +19,9 @@ function TopNav() {
       }}
     >
       <Typography variant="subtitle1">/ main / labs / akamatsu</Typography>
-      <Typography variant="subtitle1">Graham's Lab</Typography>
+      <Menu
+        button={<Typography variant="subtitle1">Graham's Lab</Typography>}
+      />
     </AppBar>
   );
 }

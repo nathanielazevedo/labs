@@ -4,23 +4,28 @@ import { Box, Typography, Button } from "@mui/material";
 type PageHeaderProps = {
   title: string;
   button: boolean;
+  onAction?: (action: string) => void;
 };
 
-const PageHeader = ({ title, button }: PageHeaderProps) => {
+const PageHeader = ({ title, button, onAction }: PageHeaderProps) => {
   return (
     <Box
       display="flex"
       flexDirection="row"
       width="100%"
       justifyContent="space-between"
-      padding="25px 25px 15px 25px"
+      padding="20px 25px 0 20px"
       alignItems="flex-end"
     >
-      <Typography variant="subtitle1" fontWeight="bold" alignSelf="flex-end">
+      <Typography variant="h6" fontWeight="bold" alignSelf="flex-end">
         {title}
       </Typography>
       {button && (
-        <Button variant="contained" size="small">
+        <Button
+          variant="contained"
+          size="small"
+          onClick={() => onAction && onAction("add")}
+        >
           <Typography variant="body2">Add +</Typography>
         </Button>
       )}

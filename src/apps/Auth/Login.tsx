@@ -1,14 +1,14 @@
 import { Box, TextField, Typography, Button, Card } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Authentication from "../../api/Auth";
 
 function Login() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
 
   const handleLogin = () => {
-    console.log(formData);
-    navigate("/Basics");
+    Authentication.login();
   };
 
   return (
