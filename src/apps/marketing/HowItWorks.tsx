@@ -127,7 +127,7 @@ const SectionTwo = ({ setOpen }: { setOpen: (val: boolean) => void }) => {
                       height: '150px',
                     }}
                   >
-                    <img src={card.icon} width='80px' />
+                    <img src={card.icon} width='80px' alt='hello' />
                   </Box>
                 </Card>
               </Box>

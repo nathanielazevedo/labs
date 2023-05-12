@@ -5,12 +5,8 @@ import Content from './Content';
 import { Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useAppDispatch } from '../tools/hooks';
 import { getLab } from '../features/labs/labsSlice';
-import NoAuthTopNav from './NoAuthTopNav';
-import NoAuthSideNav from './NoAuthSideNav';
 
 const BasePage = ({ children }: any) => {
   const dispatch = useAppDispatch();
