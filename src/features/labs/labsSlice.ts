@@ -59,9 +59,8 @@ export const addMember = createAsyncThunk(
 export const deleteMember = createAsyncThunk(
   'labs/deleteMember',
   async (formData: any) => {
-    console.log(formData);
     const response = await fetch(
-      `http://localhost:6001/lab/member/${formData.memberId}/${formData.labId}`,
+      `https://adventurous-teddy-cow.cyclic.app/lab/member/${formData.memberId}/${formData.labId}`,
       {
         method: 'DELETE',
         headers: {
