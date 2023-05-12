@@ -1,19 +1,27 @@
-import { Card, Typography, Box } from "@mui/material";
-import React from "react";
-import PageHeader from "../../components/PageHeader";
+import { Card, Typography, Box } from '@mui/material';
+import React from 'react';
+import PageHeader from '../../components/PageHeader';
+import { useSelector } from 'react-redux';
+import EditLabInfo from './EditLabInfo';
 
-function LabMain() {
+function LabMain({ noAuth }: { noAuth?: boolean }) {
+  const lab = useSelector((state: any) => state.lab.lab);
+  const [open, setOpen] = React.useState(false);
+
+  if (!lab) return <></>;
+
   return (
     <>
-      <PageHeader title="Lab Information" button={false} />
-      <Box mx="20px" mt="20px">
-        <Card style={{ padding: "50px" }}>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error
-            temporibus incidunt enim vitae rerum itaque facilis qui neque earum,
-            a molestiae placeat culpa blanditiis provident vel. Aliquid deserunt
-            eos incidunt.
-          </Typography>
+      <PageHeader
+        title={lab.lab_name}
+        button={noAuth ? false : true}
+        buttonText='Edit'
+        onAction={() => setOpen(true)}
+      />
+      {open && <EditLabInfo close={() => setOpen(false)} />}
+      <Box mx='20px' mt='20px'>
+        <Card style={{ padding: '50px' }}>
+          <Typography>{lab.lab_description}</Typography>
         </Card>
       </Box>
     </>

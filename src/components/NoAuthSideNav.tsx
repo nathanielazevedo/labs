@@ -20,7 +20,7 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import LogoutIcon from '@mui/icons-material/Logout';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -81,19 +81,19 @@ export default function MiniDrawer() {
   };
 
   type IconMapperType = {
-    Mylab: any;
+    Lab: any;
     Team: any;
   };
 
   const IconMapper = {
-    Mylab: <HomeIcon />,
+    Lab: <HomeIcon />,
     Team: <GroupsIcon />,
     Gallery: <CropOriginalIcon />,
     Projects: <WorkspacesIcon />,
     Publications: <DescriptionIcon />,
     Logout: <LogoutIcon />,
   } as IconMapperType;
-
+  const id = useParams<{ id: string }>().id;
   return (
     <Box sx={{ display: 'flex', zIndex: '0' }}>
       <Drawer
@@ -103,13 +103,10 @@ export default function MiniDrawer() {
         PaperProps={{ sx: { position: 'relative' } }}
       >
         <List>
-          {['Mylab', 'Team', 'Logout'].map((text, index) => (
+          {['Lab', 'Team'].map((text, index) => (
             <Link
-              to={text === 'Logout' ? `/login` : `/${text}`}
+              to={text === 'Lab' ? `/lab/${id}` : `/lab/${text}/${id}`}
               style={{ textDecoration: 'none', color: 'inherit' }}
-              onClick={
-                text === 'Logout' ? () => localStorage.clear() : () => {}
-              }
             >
               <ListItem key={text} disablePadding sx={{ display: 'block' }}>
                 <ListItemButton

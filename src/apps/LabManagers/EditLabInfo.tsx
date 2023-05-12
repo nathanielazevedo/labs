@@ -5,9 +5,9 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import { addMember } from '../features/labs/labsSlice';
 import { useSelector } from 'react-redux';
-import { useAppDispatch } from '../tools/hooks';
+import { useAppDispatch } from '../../tools/hooks';
+import { updateLabBasicInfo } from '../../features/labs/labsSlice';
 
 type FormDialogPropsType = {
   close: () => void;
@@ -15,16 +15,16 @@ type FormDialogPropsType = {
 
 const FormDialog = ({ close }: FormDialogPropsType) => {
   const dispatch = useAppDispatch();
-  const [formData, setFormData] = React.useState({
-    name: '',
-    position: '',
-  });
   const lab = useSelector((state: any) => state.lab.lab);
+  const [formData, setFormData] = React.useState({
+    lab_name: lab.lab_name,
+    lab_description: lab.lab_description,
+  });
 
   const handleSubmit = () => {
     close();
     try {
-      dispatch(addMember({ id: lab._id, formData }));
+      dispatch(updateLabBasicInfo({ id: lab._id, formData }));
     } catch (err) {
       console.log(err);
     }
@@ -33,7 +33,7 @@ const FormDialog = ({ close }: FormDialogPropsType) => {
   return (
     <div>
       <Dialog open>
-        <DialogTitle>Add a Lab Member</DialogTitle>
+        <DialogTitle>Edit Lab Info</DialogTitle>
         <DialogContent>
           <TextField
             autoFocus
@@ -42,23 +42,27 @@ const FormDialog = ({ close }: FormDialogPropsType) => {
             label='Name'
             fullWidth
             variant='standard'
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            value={formData.lab_name}
+            onChange={(e) =>
+              setFormData({ ...formData, lab_name: e.target.value })
+            }
           />
           <TextField
             autoFocus
             margin='dense'
             id='name'
-            label='Position'
+            label='Description'
             fullWidth
             variant='standard'
+            value={formData.lab_description}
             onChange={(e) =>
-              setFormData({ ...formData, position: e.target.value })
+              setFormData({ ...formData, lab_description: e.target.value })
             }
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={close}>Cancel</Button>
-          <Button onClick={handleSubmit}>Add Member</Button>
+          <Button onClick={handleSubmit}>Save Changes</Button>
         </DialogActions>
       </Dialog>
     </div>

@@ -12,29 +12,21 @@ import { getLab } from '../features/labs/labsSlice';
 import NoAuthTopNav from './NoAuthTopNav';
 import NoAuthSideNav from './NoAuthSideNav';
 
-const BasePage = ({ children }: any) => {
+const BasePage = ({ children, noAuth }: any) => {
   const dispatch = useAppDispatch();
+  const id = useParams<{ id: string }>().id;
 
-  let navigate = useNavigate();
   React.useEffect(() => {
-    const labLocal = localStorage.getItem('user');
-    if (labLocal) {
-      const id = JSON.parse(labLocal)._id;
-      console.log(id);
+    if (id) {
       dispatch(getLab(id));
     }
-  }, [dispatch]);
-
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    !user && navigate('/login');
-  }, [navigate]);
+  }, [dispatch, id]);
 
   return (
     <>
-      <TopNav />
+      <NoAuthTopNav />
       <Box display='flex' flexDirection='row' sx={{ height: '100%' }}>
-        <SideNav />
+        <NoAuthSideNav />
         <Content>{children}</Content>
       </Box>
     </>

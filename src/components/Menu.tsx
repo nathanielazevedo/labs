@@ -1,7 +1,7 @@
-import * as React from "react";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Auth from "../api/Auth";
+import * as React from 'react';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Auth from '../api/Auth';
 
 type MenuProps = {
   button: any;
@@ -18,18 +18,25 @@ export default function BasicMenu({ button }: MenuProps) {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        cursor: 'pointer',
+      }}
+    >
       <div onClick={handleClick}>{button}</div>
       <Menu
-        id="basic-menu"
+        id='basic-menu'
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
+        sx={{
+          cursor: 'pointer',
+        }}
         MenuListProps={{
-          "aria-labelledby": "basic-button",
+          'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={Auth.logout}>Logout</MenuItem>
+        <MenuItem onClick={Auth.logout}>Account</MenuItem>
       </Menu>
     </div>
   );

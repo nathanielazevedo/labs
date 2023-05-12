@@ -3,6 +3,7 @@ import AppBar from '@mui/material/AppBar';
 import { TextField, Typography } from '@mui/material';
 import Menu from './Menu';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 function TopNav() {
   const lab = useSelector((state: any) => state.lab.lab);
@@ -21,14 +22,16 @@ function TopNav() {
         position: 'relative',
       }}
     >
-      <Typography
-        variant='subtitle1'
-        sx={{
-          minWidth: 'fit-content',
-        }}
-      >
-        / main / labs / {lab?.lab_name && lab.lab_name.toLowerCase()}
-      </Typography>
+      <Link to='/'>
+        <Typography
+          variant='subtitle1'
+          sx={{
+            minWidth: 'fit-content',
+          }}
+        >
+          Scientific Research Labs
+        </Typography>
+      </Link>
       {/* <TextField
         id='outlined-basic'
         placeholder='Search for a lab'
@@ -50,18 +53,6 @@ function TopNav() {
           },
         }}
       /> */}
-      <Menu
-        button={
-          <Typography
-            variant='subtitle1'
-            sx={{
-              minWidth: 'fit-content',
-            }}
-          >
-            {lab?.lab_name && lab.lab_name}
-          </Typography>
-        }
-      />
     </AppBar>
   );
 }
