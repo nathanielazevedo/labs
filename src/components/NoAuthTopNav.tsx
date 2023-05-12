@@ -1,13 +1,9 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { TextField, Typography } from '@mui/material';
-import Menu from './Menu';
-import { useSelector } from 'react-redux';
+import { Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 function TopNav() {
-  const lab = useSelector((state: any) => state.lab.lab);
-
   return (
     <AppBar
       position='fixed'

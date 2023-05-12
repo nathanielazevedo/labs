@@ -15,7 +15,7 @@ const steps = ['General Info', 'Authentication'];
 
 export default function SignUpStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const [error, setError] = React.useState(false);
+  const setError = React.useState(false)[1];
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     email: '',
