@@ -7,17 +7,26 @@ const Opportunities = ({ noAuth }: any) => {
     {
       title: 'Lab Manager',
       date: '2021-10-10',
-      description: 'We are looking for a new lab manager',
+      description:
+        'The laboratory manager must be able to work precisely and structurally. While they usually work with several people in the lab, they must be able to work independently as well. ',
     },
     {
       title: 'Postdoc',
       date: '2021-10-10',
-      description: 'We are looking for a new postdoc',
+      description:
+        'Postdoctoral research fellow provides scientific expertise and leadership in areas that include biology, food chemistry,physiology, and metabolism, with demonstrated ability to integrate and interpret complex scientific data and systems biology.',
     },
     {
       title: 'Undergraduate Researcher',
       date: '2021-10-10',
-      description: 'We are looking for a new undergraduate researcher',
+      description:
+        'We are looking for a new undergraduate researcher. Come have fun in our lab!',
+    },
+    {
+      title: 'Lecturer',
+      date: '2021-10-10',
+      description:
+        'The lecturer will be responsible for teaching undergraduate and graduate courses in the area of food science and technology, and food chemistry.',
     },
   ];
   return (
