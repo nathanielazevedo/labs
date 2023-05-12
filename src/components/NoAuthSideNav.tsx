@@ -89,7 +89,7 @@ export default function MiniDrawer() {
     Lab: <HomeIcon />,
     Team: <GroupsIcon />,
     Gallery: <CropOriginalIcon />,
-    Projects: <WorkspacesIcon />,
+    Opportunities: <WorkspacesIcon />,
     Publications: <DescriptionIcon />,
     Logout: <LogoutIcon />,
   } as IconMapperType;
@@ -103,34 +103,39 @@ export default function MiniDrawer() {
         PaperProps={{ sx: { position: 'relative' } }}
       >
         <List>
-          {['Lab', 'Team'].map((text, index) => (
-            <Link
-              to={text === 'Lab' ? `/lab/${id}` : `/lab/${text}/${id}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
+          {['Lab', 'Team', 'Opportunities', 'Publications'].map(
+            (text, index) => (
+              <Link
+                to={text === 'Lab' ? `/lab/${id}` : `/lab/${text}/${id}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+              >
+                <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      fontSize: 10,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
                     }}
                   >
-                    {IconMapper[text as keyof IconMapperType]}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ))}
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        fontSize: 10,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {IconMapper[text as keyof IconMapperType]}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            )
+          )}
         </List>
         <DrawerToggle sx={{ marginBottom: '10px' }}>
           <IconButton onClick={handleDrawer} sx={{ color: 'grey.500' }}>

@@ -9,6 +9,8 @@ import Intro from '../apps/marketing/Intro';
 import MemberPage from '../apps/LabManagers/team/MemberPage';
 import Search from '../apps/Search/Search';
 import BasePageNoAuth from '../components/BasePageNoAuth';
+import Opportunities from '../apps/LabManagers/opportunities/Opportunities';
+import Publications from '../apps/LabManagers/publications/Publications';
 
 function Router() {
   return (
@@ -36,10 +38,42 @@ function Router() {
         }
       />
       <Route
+        path='/lab/Opportunities/:id'
+        element={
+          <BasePageNoAuth>
+            <Opportunities />
+          </BasePageNoAuth>
+        }
+      />
+      <Route
+        path='/lab/Publications/:id'
+        element={
+          <BasePageNoAuth>
+            <Publications />
+          </BasePageNoAuth>
+        }
+      />
+      <Route
         path='/Team'
         element={
           <BasePage>
             <TeamParent />
+          </BasePage>
+        }
+      />
+      <Route
+        path='/Publications'
+        element={
+          <BasePage>
+            <Publications />
+          </BasePage>
+        }
+      />
+      <Route
+        path='/Opportunities'
+        element={
+          <BasePage>
+            <Opportunities />
           </BasePage>
         }
       />

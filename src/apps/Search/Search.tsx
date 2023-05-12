@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import React from 'react';
 import NavBar from '../marketing/Navbar';
 import Lab from '../../api/Lab';
@@ -32,6 +32,12 @@ const Search = () => {
             flexDirection: 'column',
           }}
         >
+          <Typography
+            variant='h5'
+            sx={{ marginBottom: '20px', fontWeight: 'light' }}
+          >
+            Click a lab to view more information
+          </Typography>
           <LabsGrid rows={labs} />
         </Box>
       </Box>

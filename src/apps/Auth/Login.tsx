@@ -7,6 +7,7 @@ import NavBar from '../marketing/Navbar';
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: '', password: '' });
+
   const [error, setError] = useState(false);
 
   const handleLogin = async () => {

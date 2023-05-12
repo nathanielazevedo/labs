@@ -56,6 +56,24 @@ export const addMember = createAsyncThunk(
   }
 );
 
+export const deleteMember = createAsyncThunk(
+  'labs/deleteMember',
+  async (formData: any) => {
+    console.log(formData);
+    const response = await fetch(
+      `http://localhost:6001/lab/member/${formData.memberId}/${formData.labId}`,
+      {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }
+    );
+    const newMembers = await response.json();
+    return newMembers;
+  }
+);
+
 export const labSlice = createSlice({
   name: 'lab',
   initialState,
@@ -84,7 +102,12 @@ export const labSlice = createSlice({
       .addCase(updateLabBasicInfo.fulfilled, (state, action) => {
         state.lab = action.payload;
       })
-      .addCase(updateLabBasicInfo.rejected, (state) => {});
+      .addCase(updateLabBasicInfo.rejected, (state) => {})
+      .addCase(deleteMember.pending, (state) => {})
+      .addCase(deleteMember.fulfilled, (state, action) => {
+        state.lab = action.payload;
+      })
+      .addCase(deleteMember.rejected, (state) => {});
   },
 });
 

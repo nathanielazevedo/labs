@@ -14,7 +14,6 @@ const columns: GridColDef[] = [
     field: 'field_of_study',
     headerName: 'Field of Study',
     description: 'This column has a value getter and is not sortable.',
-    sortable: false,
     width: 160,
   },
 ];
@@ -22,7 +21,7 @@ const columns: GridColDef[] = [
 export default function DataTable({ rows }: any) {
   const navigate = useNavigate();
   return (
-    <div style={{ height: 800, width: '900px' }}>
+    <div style={{ height: 750, width: '900px' }}>
       <DataGrid
         rows={rows}
         columns={columns}

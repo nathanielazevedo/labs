@@ -28,27 +28,16 @@ function TopNav() {
           Scientific Research Labs
         </Typography>
       </Link>
-      {/* <TextField
-        id='outlined-basic'
-        placeholder='Search for a lab'
-        sx={{
-          maxWidth: '70%',
-          width: '70%',
-          '& .MuiInputBase-root': {
-            height: '30px',
-            color: 'white',
-            // '& fieldset': {
-            //   borderColor: 'white',
-            // },
-            // '&:hover fieldset': {
-            //   borderColor: 'white',
-            // },
-            // '&.Mui-focused fieldset': {
-            //   borderColor: 'white',
-            // },
-          },
-        }}
-      /> */}
+      <Link to='/search'>
+        <Typography
+          variant='subtitle1'
+          sx={{
+            minWidth: 'fit-content',
+          }}
+        >
+          Back to Search
+        </Typography>
+      </Link>
     </AppBar>
   );
 }

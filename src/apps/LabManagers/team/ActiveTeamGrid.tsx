@@ -22,13 +22,13 @@ const LabMembersGrid = ({ noAuth = false }: any) => {
       align: 'left',
       renderCell: (data: any) => {
         if (noAuth) return null;
-        return <KebabMenu data={data} />;
+        return <KebabMenu data={data} labId={lab._id} />;
       },
     },
     {
       field: 'name',
       headerName: 'Name',
-      width: 150,
+      width: 250,
       sortable: true,
       renderCell: (data: any) => (
         <RouterLink
@@ -41,7 +41,7 @@ const LabMembersGrid = ({ noAuth = false }: any) => {
     {
       field: 'position',
       headerName: 'Position',
-      width: 110,
+      width: 300,
       sortable: true,
       align: 'left',
     },

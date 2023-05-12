@@ -1,7 +1,5 @@
-import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import { Typography } from '@mui/material';
-import Menu from './Menu';
 import { useSelector } from 'react-redux';
 
 function TopNav() {
@@ -29,39 +27,14 @@ function TopNav() {
       >
         / main / labs / {lab?.lab_name && lab.lab_name.toLowerCase()}
       </Typography>
-      {/* <TextField
-        id='outlined-basic'
-        placeholder='Search for a lab'
+      <Typography
+        variant='subtitle1'
         sx={{
-          maxWidth: '70%',
-          width: '70%',
-          '& .MuiInputBase-root': {
-            height: '30px',
-            color: 'white',
-            // '& fieldset': {
-            //   borderColor: 'white',
-            // },
-            // '&:hover fieldset': {
-            //   borderColor: 'white',
-            // },
-            // '&.Mui-focused fieldset': {
-            //   borderColor: 'white',
-            // },
-          },
+          minWidth: 'fit-content',
         }}
-      /> */}
-      <Menu
-        button={
-          <Typography
-            variant='subtitle1'
-            sx={{
-              minWidth: 'fit-content',
-            }}
-          >
-            {lab?.lab_name && lab.lab_name}
-          </Typography>
-        }
-      />
+      >
+        {lab?.lab_name && lab.lab_name}
+      </Typography>
     </AppBar>
   );
 }

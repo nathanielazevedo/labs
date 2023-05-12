@@ -1,6 +1,6 @@
 import { Box, Card, TextField, Typography } from '@mui/material';
 
-const GeneralInfo = ({ formData, setFormData }: any) => {
+const GeneralInfo = ({ formData, setFormData, error, setError }: any) => {
   return (
     <Box
       display='flex'
@@ -44,24 +44,31 @@ const GeneralInfo = ({ formData, setFormData }: any) => {
             id='outlined-basic'
             label='Email'
             variant='outlined'
-            onChange={(e) =>
+            type='email'
+            error={error.email !== ''}
+            helperText={error ? error.email : ''}
+            onChange={(e) => {
+              setError((o: any) => ({ ...o, email: '' }));
               setFormData((o: any) => {
                 return { ...o, email: e.target.value };
-              })
-            }
+              });
+            }}
             fullWidth
           />
           <TextField
             id='outlined-basic'
             label='Password'
             type='password'
+            error={error.password !== ''}
             variant='outlined'
+            helperText={error !== '' ? error.password : ''}
             fullWidth
-            onChange={(e) =>
+            onChange={(e) => {
+              setError((o: any) => ({ ...o, password: '' }));
               setFormData((o: any) => {
                 return { ...o, password: e.target.value };
-              })
-            }
+              });
+            }}
           />
         </Box>
       </Card>

@@ -89,7 +89,7 @@ export default function MiniDrawer() {
     Mylab: <HomeIcon />,
     Team: <GroupsIcon />,
     Gallery: <CropOriginalIcon />,
-    Projects: <WorkspacesIcon />,
+    Opportunities: <WorkspacesIcon />,
     Publications: <DescriptionIcon />,
     Logout: <LogoutIcon />,
   } as IconMapperType;
@@ -103,37 +103,42 @@ export default function MiniDrawer() {
         PaperProps={{ sx: { position: 'relative' } }}
       >
         <List>
-          {['Mylab', 'Team', 'Logout'].map((text, index) => (
-            <Link
-              to={text === 'Logout' ? `/login` : `/${text}`}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-              onClick={
-                text === 'Logout' ? () => localStorage.clear() : () => {}
-              }
-            >
-              <ListItem key={text} disablePadding sx={{ display: 'block' }}>
-                <ListItemButton
-                  sx={{
-                    minHeight: 48,
-                    justifyContent: open ? 'initial' : 'center',
-                    px: 2.5,
-                  }}
-                >
-                  <ListItemIcon
+          {['Mylab', 'Team', 'Opportunities', 'Publications', 'Logout'].map(
+            (text, index) => (
+              <Link
+                to={text === 'Logout' ? `/login` : `/${text}`}
+                style={{ textDecoration: 'none', color: 'inherit' }}
+                onClick={
+                  text === 'Logout' ? () => localStorage.clear() : () => {}
+                }
+              >
+                <ListItem key={text} disablePadding sx={{ display: 'block' }}>
+                  <ListItemButton
                     sx={{
-                      minWidth: 0,
-                      fontSize: 10,
-                      mr: open ? 3 : 'auto',
-                      justifyContent: 'center',
+                      minHeight: 48,
+                      justifyContent: open ? 'initial' : 'center',
+                      px: 2.5,
                     }}
                   >
-                    {IconMapper[text as keyof IconMapperType]}
-                  </ListItemIcon>
-                  <ListItemText primary={text} sx={{ opacity: open ? 1 : 0 }} />
-                </ListItemButton>
-              </ListItem>
-            </Link>
-          ))}
+                    <ListItemIcon
+                      sx={{
+                        minWidth: 0,
+                        fontSize: 10,
+                        mr: open ? 3 : 'auto',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {IconMapper[text as keyof IconMapperType]}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={text}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
+              </Link>
+            )
+          )}
         </List>
         <DrawerToggle sx={{ marginBottom: '10px' }}>
           <IconButton onClick={handleDrawer} sx={{ color: 'grey.500' }}>

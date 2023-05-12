@@ -15,7 +15,11 @@ const steps = ['General Info', 'Authentication'];
 
 export default function SignUpStepper() {
   const [activeStep, setActiveStep] = React.useState(0);
-  const setError = React.useState(false)[1];
+  const [submitted, setSubmitted] = React.useState(false);
+  const [error, setError] = React.useState<any>({
+    email: '',
+    password: '',
+  });
   const navigate = useNavigate();
   const [formData, setFormData] = React.useState({
     email: '',
@@ -27,15 +31,25 @@ export default function SignUpStepper() {
   });
 
   const handleRegister = async () => {
-    if (!formData.email || !formData.password) return setError(true);
+    if (!formData.email || !formData.password)
+      return setError({ email: true, password: true });
+
+    if (formData.email.length < 5 || formData.password.length < 5) {
+      return setError({
+        email: 'Must be greater than 5 characters',
+        password: 'Must be greater than 5 characters',
+      });
+    }
+    setSubmitted(true);
     try {
       const user = await Authentication.register(formData);
       if (user) {
         navigate('/mylab', { replace: true });
       }
     } catch (e) {
-      setError(true);
+      setError({ email: true, password: true });
     }
+    setSubmitted(false);
   };
 
   useEffect(() => {
@@ -48,7 +62,14 @@ export default function SignUpStepper() {
       case 0:
         return <GeneralInfo formData={formData} setFormData={setFormData} />;
       case 1:
-        return <Auth formData={formData} setFormData={setFormData} />;
+        return (
+          <Auth
+            formData={formData}
+            setFormData={setFormData}
+            error={error}
+            setError={setError}
+          />
+        );
       default:
         return 'Unknown step';
     }
@@ -61,6 +82,7 @@ export default function SignUpStepper() {
   const handleNext = () => {
     if (activeStep === steps.length - 1) {
       handleRegister();
+      return;
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -75,6 +97,16 @@ export default function SignUpStepper() {
         formData.field_of_study === '' ||
         formData.lab_description === ''
       );
+    }
+  };
+
+  const getButtonText = () => {
+    if (activeStep === steps.length - 1) {
+      return 'Register';
+    } else if (submitted) {
+      return 'Submitting...';
+    } else {
+      return 'Next';
     }
   };
 
@@ -117,7 +149,7 @@ export default function SignUpStepper() {
             </Button>
             <Box sx={{ flex: '1 1 auto' }} />
             <Button onClick={handleNext} disabled={isDisabled()}>
-              {activeStep === steps.length - 1 ? 'Sign Up' : 'Next'}
+              {getButtonText()}
             </Button>
           </Box>
         </React.Fragment>
