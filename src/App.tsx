@@ -16,7 +16,7 @@ const darkTheme = createTheme({
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/labs'>
       <ThemeProvider theme={darkTheme}>
         <Box
           display='flex'
