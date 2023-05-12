@@ -6,7 +6,9 @@ class Lab {
 
   async getLabs() {
     try {
-      const response = await fetch(`http://localhost:6001/labs`);
+      const response = await fetch(
+        `https://adventurous-teddy-cow.cyclic.app/labs`
+      );
       if (response.ok === false) throw new Error('Invalid credentials');
       const labs = await response.json();
       return labs;

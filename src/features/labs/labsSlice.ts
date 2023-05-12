@@ -10,9 +10,12 @@ const initialState: CounterState = {
 };
 
 export const getLab = createAsyncThunk('labs/fetchLab', async (id: string) => {
-  const response = await fetch(`http://localhost:6001/lab/${id}`, {
-    method: 'GET',
-  });
+  const response = await fetch(
+    `https://adventurous-teddy-cow.cyclic.app/lab/${id}`,
+    {
+      method: 'GET',
+    }
+  );
   const lab = await response.json();
   return lab;
 });
@@ -20,13 +23,16 @@ export const getLab = createAsyncThunk('labs/fetchLab', async (id: string) => {
 export const updateLabBasicInfo = createAsyncThunk(
   'labs/updateLab',
   async (formData: any) => {
-    const response = await fetch(`http://localhost:6001/lab/${formData.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData.formData),
-    });
+    const response = await fetch(
+      `https://adventurous-teddy-cow.cyclic.app/lab/${formData.id}`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData.formData),
+      }
+    );
     const lab = await response.json();
     return lab;
   }
@@ -36,7 +42,7 @@ export const addMember = createAsyncThunk(
   'labs/addMember',
   async (formData: any) => {
     const response = await fetch(
-      `http://localhost:6001/lab/member/${formData.id}`,
+      `https://adventurous-teddy-cow.cyclic.app/lab/member/${formData.id}`,
       {
         method: 'POST',
         headers: {

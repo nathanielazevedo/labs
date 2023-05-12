@@ -6,7 +6,9 @@ class Member {
 
   async getMember(id: string) {
     try {
-      const response = await fetch(`http://localhost:6001/getUser/${id}`);
+      const response = await fetch(
+        `https://adventurous-teddy-cow.cyclic.app/getUser/${id}`
+      );
       if (response.ok === false) throw new Error('Invalid credentials');
       const user = await response.json();
       delete user.password;

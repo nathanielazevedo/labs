@@ -6,13 +6,16 @@ class Authentication {
 
   async login(formData: { email: string; password: string }) {
     try {
-      const response = await fetch('http://localhost:6001/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        'https://adventurous-teddy-cow.cyclic.app/login',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok === false) throw new Error('Invalid credentials');
       const user = await response.json();
       delete user.password;
@@ -33,13 +36,16 @@ class Authentication {
     password: string;
     lab_name: string;
   }) {
-    const response = await fetch('http://localhost:6001/register', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      'https://adventurous-teddy-cow.cyclic.app/register',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     const user = await response.json();
     delete user.password;
     localStorage.setItem('user', JSON.stringify(user));
