@@ -16,7 +16,6 @@ const App = () => {
       dispatch(setModeInitial(mode));
     } else {
       dispatch(setModeInitial('dark'));
-      localStorage.setItem('mode', 'dark');
     }
   }
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);

@@ -1,9 +1,14 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { Typography } from '@mui/material';
+import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setMode } from '../features/labs/labsSlice';
+import { DarkMode, LightMode } from '@mui/icons-material';
 
 function TopNav() {
+  const theme = useTheme();
+  const dispatch = useDispatch();
   return (
     <AppBar
       position='fixed'
@@ -28,16 +33,36 @@ function TopNav() {
           Scientific Research Labs
         </Typography>
       </Link>
-      <Link to='/search'>
-        <Typography
-          variant='subtitle1'
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+        }}
+      >
+        <Link to='/search'>
+          <Typography
+            variant='subtitle1'
+            sx={{
+              minWidth: 'fit-content',
+            }}
+          >
+            Back to Search
+          </Typography>
+        </Link>
+        <IconButton
+          onClick={() => dispatch(setMode())}
           sx={{
-            minWidth: 'fit-content',
+            justifySelf: 'flex-end',
           }}
         >
-          Back to Search
-        </Typography>
-      </Link>
+          {theme.palette.mode === 'dark' ? (
+            <DarkMode sx={{ fontSize: '25px' }} />
+          ) : (
+            <LightMode sx={{ color: 'black', fontSize: '25px' }} />
+          )}
+        </IconButton>
+      </Box>
     </AppBar>
   );
 }

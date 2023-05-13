@@ -83,9 +83,11 @@ export const labSlice = createSlice({
       state.lab = action.payload;
     },
     setMode: (state) => {
+      localStorage.setItem('mode', state.mode === 'light' ? 'dark' : 'light');
       state.mode = state.mode === 'light' ? 'dark' : 'light';
     },
     setModeInitial: (state, action: any) => {
+      localStorage.setItem('mode', action.payload);
       state.mode = action.payload;
     },
   },
