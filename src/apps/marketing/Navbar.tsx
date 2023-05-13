@@ -9,35 +9,56 @@ import { IconButton, useTheme } from '@mui/material';
 import { DarkMode, LightMode } from '@mui/icons-material';
 import { useDispatch } from 'react-redux';
 import { setMode } from '../../features/labs/labsSlice';
+import { Link as Linkm } from '@mui/material';
 
 const NavBar = ({ show = true, text = 'Login / Signup' }: any) => {
   const dispatch = useDispatch();
   const theme = useTheme();
+
   return (
-    <AppBar position='static' elevation={0}>
+    <AppBar
+      position='static'
+      elevation={0}
+      sx={{
+        height: '50px',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        flexDirection: 'row',
+        padding: '0 25px',
+        borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
+        position: 'relative',
+        backgroundColor: theme.palette.background.paper,
+      }}
+    >
       <Container sx={styles.container}>
         <Toolbar disableGutters>
           <Link to='/'>
-            <Typography variant='h6' noWrap sx={styles.name}>
+            <Typography
+              variant='h6'
+              noWrap
+              sx={{
+                ...styles.name,
+                color: theme.palette.mode === 'dark' ? 'white' : 'black',
+              }}
+            >
               Scientific Research Labs
             </Typography>
           </Link>
           {show && (
             <Box sx={styles.menuContainer}>
               <Link to='/login'>
-                <Button
-                  variant='contained'
+                <Linkm
+                  variant='h5'
+                  underline='hover'
                   sx={{
                     width: '100%',
-                    color: 'white',
                     height: '30px',
                     fontSize: { xs: '12px', sm: '16px' },
-                    background:
-                      'radial-gradient(926px at 2.7% 11%, #30a7d0 0%, rgb(178, 31, 102) 90%)',
+                    color: theme.palette.mode === 'dark' ? 'white' : 'black',
                   }}
                 >
                   {text}
-                </Button>
+                </Linkm>
               </Link>
               <IconButton
                 onClick={() => dispatch(setMode())}

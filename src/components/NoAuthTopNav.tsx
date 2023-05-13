@@ -17,6 +17,7 @@ function TopNav() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const lab = useSelector((state: any) => state.lab.lab);
+  console.log(theme.palette);
 
   return (
     <AppBar
@@ -30,12 +31,12 @@ function TopNav() {
         padding: '0 25px',
         borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
         position: 'relative',
+        backgroundColor: theme.palette.background.paper,
       }}
     >
       <Breadcrumbs>
         <Link to='/'>
           <Linkm
-            color='gray'
             underline='hover'
             sx={{
               minWidth: 'fit-content',
@@ -46,7 +47,6 @@ function TopNav() {
         </Link>
         <Link to='/search'>
           <Linkm
-            color='gray'
             underline='hover'
             sx={{
               minWidth: 'fit-content',

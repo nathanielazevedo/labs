@@ -21,6 +21,7 @@ function TopNav() {
         padding: '0 25px',
         borderBottom: '1px solid rgba(255, 255, 255, 0.12)',
         position: 'relative',
+        backgroundColor: theme.palette.background.paper,
       }}
     >
       <Typography
