@@ -1,14 +1,23 @@
 import React from 'react';
 import AppBar from '@mui/material/AppBar';
-import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import {
+  Box,
+  IconButton,
+  Typography,
+  useTheme,
+  Link as Linkm,
+} from '@mui/material';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setMode } from '../features/labs/labsSlice';
 import { DarkMode, LightMode } from '@mui/icons-material';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
 
 function TopNav() {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const lab = useSelector((state: any) => state.lab.lab);
+
   return (
     <AppBar
       position='fixed'
@@ -23,16 +32,38 @@ function TopNav() {
         position: 'relative',
       }}
     >
-      <Link to='/'>
+      <Breadcrumbs>
+        <Link to='/'>
+          <Linkm
+            color='gray'
+            underline='hover'
+            sx={{
+              minWidth: 'fit-content',
+            }}
+          >
+            srl
+          </Linkm>
+        </Link>
+        <Link to='/search'>
+          <Linkm
+            color='gray'
+            underline='hover'
+            sx={{
+              minWidth: 'fit-content',
+            }}
+          >
+            search
+          </Linkm>
+        </Link>
         <Typography
           variant='subtitle1'
           sx={{
             minWidth: 'fit-content',
           }}
         >
-          Scientific Research Labs
+          {lab?.lab_name && lab.lab_name.toLowerCase()}
         </Typography>
-      </Link>
+      </Breadcrumbs>
       <Box
         sx={{
           display: 'flex',

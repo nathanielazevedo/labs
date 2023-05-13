@@ -3,15 +3,17 @@ import SideNav from './SideNav';
 import Content from './Content';
 import { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { useAppDispatch } from '../tools/hooks';
+import { useAppDispatch, useAppSelector } from '../tools/hooks';
 import { getLab } from '../features/labs/labsSlice';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 const BasePage = () => {
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
+  const lab = useAppSelector((state) => state.lab.lab);
 
   useEffect(() => {
+    if (lab) return;
     const labLocal = localStorage.getItem('user');
     if (labLocal) {
       const id = JSON.parse(labLocal)._id;
@@ -19,7 +21,7 @@ const BasePage = () => {
     } else {
       navigate('/login');
     }
-  }, [dispatch, navigate]);
+  }, [dispatch, lab, navigate]);
 
   return (
     <>
