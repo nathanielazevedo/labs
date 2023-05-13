@@ -1,28 +1,33 @@
 import Content from './Content';
 import { Box } from '@mui/material';
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useEffect } from 'react';
+import NoAuthTopNav from './NoAuthTopNav';
+import NoAuthSideNav from './SideNavNoAuth';
 import { useAppDispatch } from '../tools/hooks';
 import { getLab } from '../features/labs/labsSlice';
-import NoAuthTopNav from './NoAuthTopNav';
-import NoAuthSideNav from './NoAuthSideNav';
+import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
-const BasePage = ({ children, noAuth }: any) => {
+const BasePage = () => {
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const id = useParams<{ id: string }>().id;
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (id) {
       dispatch(getLab(id));
+    } else {
+      navigate('/search');
     }
-  }, [dispatch, id]);
+  }, [dispatch, id, navigate]);
 
   return (
     <>
       <NoAuthTopNav />
       <Box display='flex' flexDirection='row' sx={{ height: '100%' }}>
         <NoAuthSideNav />
-        <Content>{children}</Content>
+        <Content>
+          <Outlet />
+        </Content>
       </Box>
     </>
   );

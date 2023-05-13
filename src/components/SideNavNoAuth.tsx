@@ -106,7 +106,11 @@ export default function MiniDrawer() {
           {['Lab', 'Team', 'Opportunities', 'Publications'].map(
             (text, index) => (
               <Link
-                to={text === 'Lab' ? `/lab/${id}` : `/lab/${text}/${id}`}
+                to={
+                  text === 'Lab'
+                    ? `/lab/${id}`
+                    : `/lab/${id}/${text.toLowerCase()}`
+                }
                 style={{ textDecoration: 'none', color: 'inherit' }}
               >
                 <ListItem key={text} disablePadding sx={{ display: 'block' }}>

@@ -1,16 +1,16 @@
 import { Card, Typography, Box } from '@mui/material';
 import React from 'react';
-import PageHeader from '../../components/PageHeader';
+import PageHeader from '../../../components/PageHeader';
 import { useSelector } from 'react-redux';
 import EditLabInfo from './EditLabInfo';
-import { polygons } from '../../assets';
+import { polygons } from '../../../assets';
 
 function LabMain({ noAuth }: { noAuth?: boolean }) {
   const lab = useSelector((state: any) => state.lab.lab);
   const [open, setOpen] = React.useState(false);
 
   if (!lab) return <></>;
-
+  console.log('loaded');
   const recentNews = [
     {
       title: 'New Lab Manager',

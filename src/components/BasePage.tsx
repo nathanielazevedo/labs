@@ -1,37 +1,34 @@
-import { useEffect } from 'react';
 import TopNav from './TopNav';
 import SideNav from './SideNav';
 import Content from './Content';
+import { useEffect } from 'react';
 import { Box } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
 import { useAppDispatch } from '../tools/hooks';
 import { getLab } from '../features/labs/labsSlice';
+import { Outlet, useNavigate } from 'react-router-dom';
 
-const BasePage = ({ children }: any) => {
+const BasePage = () => {
   const dispatch = useAppDispatch();
-
   let navigate = useNavigate();
-  React.useEffect(() => {
+
+  useEffect(() => {
     const labLocal = localStorage.getItem('user');
     if (labLocal) {
       const id = JSON.parse(labLocal)._id;
-      console.log(id);
       dispatch(getLab(id));
+    } else {
+      navigate('/login');
     }
-  }, [dispatch]);
-
-  useEffect(() => {
-    const user = localStorage.getItem('user');
-    !user && navigate('/login');
-  }, [navigate]);
+  }, [dispatch, navigate]);
 
   return (
     <>
       <TopNav />
       <Box display='flex' flexDirection='row' sx={{ height: '100%' }}>
         <SideNav />
-        <Content>{children}</Content>
+        <Content>
+          <Outlet />
+        </Content>
       </Box>
     </>
   );

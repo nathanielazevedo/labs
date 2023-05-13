@@ -1,23 +1,18 @@
-import React from 'react';
 import './App.css';
+import { useMemo } from 'react';
+import Router from './features/Router';
+import { themeSettings } from './theme';
+import { useSelector } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
-import Router from './features/Router';
 
-const darkTheme = createTheme({
-  palette: {
-    mode: 'dark',
-    background: {
-      default: '#060816',
-      paper: '#060816',
-    },
-  },
-});
-
-function App() {
+const App = () => {
+  const mode = useSelector((state: any) => state.lab.mode);
+  console.log(mode);
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <BrowserRouter basename='/labs'>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <Box
           display='flex'
           flexDirection='column'
@@ -29,6 +24,6 @@ function App() {
       </ThemeProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

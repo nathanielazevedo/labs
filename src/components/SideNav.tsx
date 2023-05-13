@@ -94,6 +94,25 @@ export default function MiniDrawer() {
     Logout: <LogoutIcon />,
   } as IconMapperType;
 
+  const getRoute = (text: string) => {
+    switch (text) {
+      case 'Mylab':
+        return '/mylab';
+      case 'Team':
+        return 'team';
+      case 'Gallery':
+        return 'gallery';
+      case 'Opportunities':
+        return 'opportunities';
+      case 'Publications':
+        return 'publications';
+      case 'Logout':
+        return '/login';
+      default:
+        return '/';
+    }
+  };
+
   return (
     <Box sx={{ display: 'flex', zIndex: '0' }}>
       <Drawer
@@ -106,7 +125,7 @@ export default function MiniDrawer() {
           {['Mylab', 'Team', 'Opportunities', 'Publications', 'Logout'].map(
             (text, index) => (
               <Link
-                to={text === 'Logout' ? `/login` : `/${text}`}
+                to={getRoute(text)}
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={
                   text === 'Logout' ? () => localStorage.clear() : () => {}

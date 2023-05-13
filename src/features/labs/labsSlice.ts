@@ -2,10 +2,12 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../tools/store';
 
 export interface CounterState {
+  mode: string;
   lab: any;
 }
 
 const initialState: CounterState = {
+  mode: 'light',
   lab: undefined,
 };
 
@@ -80,6 +82,9 @@ export const labSlice = createSlice({
     setLab: (state, action: PayloadAction<number>) => {
       state.lab = action.payload;
     },
+    setMode: (state) => {
+      state.mode = state.mode === 'light' ? 'dark' : 'light';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,7 +115,7 @@ export const labSlice = createSlice({
   },
 });
 
-export const { setLab } = labSlice.actions;
+export const { setLab, setMode } = labSlice.actions;
 
 export const selectlab = (state: RootState) => state.lab;
 

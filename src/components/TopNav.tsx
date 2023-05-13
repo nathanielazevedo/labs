@@ -1,9 +1,15 @@
 import AppBar from '@mui/material/AppBar';
-import { Typography } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Box, IconButton, Typography, useTheme } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { DarkMode, LightMode } from '@mui/icons-material';
+import { setMode } from '../features/labs/labsSlice';
 
 function TopNav() {
   const lab = useSelector((state: any) => state.lab.lab);
+  const dispatch = useDispatch();
+  const theme = useTheme();
+  // const neutralLight = theme.palette.neutral.light;
+  // const dark = theme.palette.neutral.dark;
 
   return (
     <AppBar
@@ -27,14 +33,34 @@ function TopNav() {
       >
         / main / labs / {lab?.lab_name && lab.lab_name.toLowerCase()}
       </Typography>
-      <Typography
-        variant='subtitle1'
+      <Box
         sx={{
-          minWidth: 'fit-content',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
         }}
       >
-        {lab?.lab_name && lab.lab_name}
-      </Typography>
+        <Typography
+          variant='subtitle1'
+          sx={{
+            minWidth: 'fit-content',
+          }}
+        >
+          {lab?.lab_name && lab.lab_name}
+        </Typography>
+        <IconButton
+          onClick={() => dispatch(setMode())}
+          sx={{
+            justifySelf: 'flex-end',
+          }}
+        >
+          {theme.palette.mode === 'dark' ? (
+            <DarkMode sx={{ fontSize: '25px' }} />
+          ) : (
+            <LightMode sx={{ color: 'black', fontSize: '25px' }} />
+          )}
+        </IconButton>
+      </Box>
     </AppBar>
   );
 }

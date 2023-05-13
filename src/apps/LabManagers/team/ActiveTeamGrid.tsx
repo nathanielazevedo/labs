@@ -1,15 +1,13 @@
-import React from 'react';
+import KebabMenu from './KebabMenu';
+import { Box, Link } from '@mui/material';
+import { useSelector } from 'react-redux';
 import Grid from '../../../components/Grid';
 import { GridColDef } from '@mui/x-data-grid';
-import { Box, Link } from '@mui/material';
-import { Link as RouterLink, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import KebabMenu from './KebabMenu';
+import { Link as RouterLink } from 'react-router-dom';
 
 const LabMembersGrid = ({ noAuth = false }: any) => {
   const lab = useSelector((state: any) => state.lab.lab);
   const rows = lab?.members;
-  const id = useParams<{ id: string }>().id;
 
   if (!rows) return <div>loading...</div>;
 
@@ -31,9 +29,7 @@ const LabMembersGrid = ({ noAuth = false }: any) => {
       width: 250,
       sortable: true,
       renderCell: (data: any) => (
-        <RouterLink
-          to={noAuth ? `/lab/member/${id}/${data.id}` : `/team/${data.id}`}
-        >
+        <RouterLink to={noAuth ? `${data.id}` : `${data.id}`}>
           <Link>{data.value}</Link>
         </RouterLink>
       ),
