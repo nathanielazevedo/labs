@@ -7,9 +7,7 @@ import { Link as RouterLink } from 'react-router-dom';
 
 const LabMembersGrid = ({ noAuth = false }: any) => {
   const lab = useSelector((state: any) => state.lab.lab);
-  const rows = lab?.members;
-
-  if (!rows) return <div>loading...</div>;
+  const rows = lab?.members ?? [];
 
   const columns: GridColDef[] = [
     {

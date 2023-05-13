@@ -38,53 +38,72 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
         onAction={() => setOpen(true)}
       />
       {open && <EditLabInfo close={() => setOpen(false)} />}
-      <Box mx='20px' mt='20px'>
-        <Card style={{ padding: '50px 50px' }}>
-          <Typography>{lab.lab_description}</Typography>
-        </Card>
-        <Card style={{ padding: '50px', marginTop: '30px' }}>
-          <Typography
-            variant='h5'
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
-            Recent News
-          </Typography>
-
-          {recentNews.map((news) => (
-            <Box
-              key={news.title}
-              style={{
-                borderBottom: '1px solid #ccc',
-
-                padding: '10px',
-                marginTop: '15px',
-              }}
-            >
-              <Typography
-                variant='h6'
-                sx={{
-                  fontSize: '19px',
-                }}
-              >
-                {news.title}
-              </Typography>
-              <Typography
-                variant='subtitle1'
-                sx={{ color: 'gray', fontSize: '16px' }}
-              >
-                {news.date}
-              </Typography>
-              <Typography
-                variant='body1'
-                sx={{ color: 'gray', fontSize: '16px' }}
-              >
-                {news.description}
-              </Typography>
-            </Box>
-          ))}
-        </Card>
+      <Box
+        mx='20px'
+        mt='20px'
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          height: '100%',
+        }}
+      >
+        <Box>
+          <Card style={{ padding: '50px 50px' }}>
+            <Typography>{lab.lab_description}</Typography>
+          </Card>
+          <Box>
+            <PageHeader
+              title='Recent News'
+              button={noAuth ? false : true}
+              buttonText='Edit'
+              onAction={() => setOpen(true)}
+            />
+            {recentNews.map((news) => (
+              <Card style={{ padding: '0px 50px', marginTop: '15px' }}>
+                <Box
+                  key={news.title}
+                  style={{
+                    padding: '10px',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      minWidth: '200px',
+                      width: '200px',
+                      maxWidth: '200px',
+                      fontSize: '14px',
+                    }}
+                  >
+                    {news.title}
+                  </Typography>
+                  <Typography
+                    variant='body1'
+                    sx={{
+                      color: 'gray',
+                      fontSize: '16px',
+                      justifySelf: 'flex-start',
+                      alignSelf: 'flex-start',
+                      flex: 1,
+                    }}
+                  >
+                    {news.description}
+                  </Typography>
+                  <Typography
+                    variant='subtitle1'
+                    sx={{ color: 'gray', fontSize: '16px' }}
+                  >
+                    {news.date}
+                  </Typography>
+                </Box>
+              </Card>
+            ))}
+          </Box>
+        </Box>
         <Card
           style={{
             padding: '20px 50px',
@@ -92,6 +111,8 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
+            justifySelf: 'flex-end',
+            marginBottom: '20px',
           }}
         >
           <Box>
