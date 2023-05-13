@@ -5,8 +5,14 @@ import Button from '@mui/material/Button';
 import Toolbar from '@mui/material/Toolbar';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { IconButton, useTheme } from '@mui/material';
+import { DarkMode, LightMode } from '@mui/icons-material';
+import { useDispatch } from 'react-redux';
+import { setMode } from '../../features/labs/labsSlice';
 
 const NavBar = ({ show = true, text = 'Login / Signup' }: any) => {
+  const dispatch = useDispatch();
+  const theme = useTheme();
   return (
     <AppBar position='static' elevation={0}>
       <Container sx={styles.container}>
@@ -33,6 +39,18 @@ const NavBar = ({ show = true, text = 'Login / Signup' }: any) => {
                   {text}
                 </Button>
               </Link>
+              <IconButton
+                onClick={() => dispatch(setMode())}
+                sx={{
+                  justifySelf: 'flex-end',
+                }}
+              >
+                {theme.palette.mode === 'dark' ? (
+                  <DarkMode sx={{ fontSize: '25px' }} />
+                ) : (
+                  <LightMode sx={{ color: 'black', fontSize: '25px' }} />
+                )}
+              </IconButton>
             </Box>
           )}
         </Toolbar>
@@ -61,5 +79,7 @@ const styles = {
     flexGrow: 1,
     display: 'flex',
     justifyContent: 'flex-end',
+    alignItems: 'center',
+    gap: '10px',
   },
 };

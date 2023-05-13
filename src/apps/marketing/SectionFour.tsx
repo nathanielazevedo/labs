@@ -33,7 +33,7 @@ const SectionFour = ({ setOpen }: { setOpen: (val: boolean) => void }) => {
         </Box>
 
         <Box>
-          <CheckCircleOutlineIcon sx={{ fontSize: '300px', color: 'white' }} />
+          <CheckCircleOutlineIcon sx={{ fontSize: '300px' }} />
         </Box>
       </Box>
     </Box>

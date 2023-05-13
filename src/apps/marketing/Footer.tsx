@@ -10,7 +10,6 @@ const Footer = () => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#060816',
         maxWidth: '100vw',
       }}
     >
@@ -20,7 +19,6 @@ const Footer = () => {
           flexDirection: 'row',
           justifyContent: 'space-between',
           alignItems: 'center',
-          backgroundColor: '#060816',
           width: { xs: '90%', sm: '90%', lg: '1200px' },
         }}
       >

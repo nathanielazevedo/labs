@@ -148,6 +148,5 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     padding: { xs: '150px 0', lg: '100px' },
-    backgroundColor: '#060816',
   },
 };

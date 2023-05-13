@@ -8,8 +8,6 @@ function TopNav() {
   const lab = useSelector((state: any) => state.lab.lab);
   const dispatch = useDispatch();
   const theme = useTheme();
-  // const neutralLight = theme.palette.neutral.light;
-  // const dark = theme.palette.neutral.dark;
 
   return (
     <AppBar
