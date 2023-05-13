@@ -71,16 +71,6 @@ function TopNav() {
           gap: '10px',
         }}
       >
-        <Link to='/search'>
-          <Typography
-            variant='subtitle1'
-            sx={{
-              minWidth: 'fit-content',
-            }}
-          >
-            Back to Search
-          </Typography>
-        </Link>
         <IconButton
           onClick={() => dispatch(setMode())}
           sx={{
