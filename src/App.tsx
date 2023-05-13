@@ -7,8 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Box, createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 const App = () => {
-  const mode = useSelector((state: any) => state.lab.mode);
-  console.log(mode);
+  const mode = useSelector((state: any) => 'dark');
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return (
     <BrowserRouter basename='/labs'>

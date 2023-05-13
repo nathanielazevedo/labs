@@ -18,7 +18,6 @@ const Hero = ({ setOpen }: { setOpen: (val: boolean) => void }) => {
           display: 'flex',
           justifyContent: { xs: 'flex-start', lg: 'flex-start' },
           alignItems: 'center',
-          backgroundColor: '#060816',
           maxWidth: { xs: '80%', sm: '90%', lg: '1200px' },
           width: { xs: '80%', sm: '100%', lg: '1200px' },
         }}
