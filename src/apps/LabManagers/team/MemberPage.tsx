@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PageHeader from '../../../components/PageHeader';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import Item from '../../../components/Item';
 
 function MemberPage({ noAuth }: { noAuth?: boolean }) {
   const memberId = useParams<{ memberId: string }>().memberId;
@@ -33,11 +34,11 @@ function MemberPage({ noAuth }: { noAuth?: boolean }) {
 
   return (
     <Box>
-      <PageHeader
+      {/* <PageHeader
         title='Member'
         button={noAuth ? false : true}
         buttonText='Edit Member'
-      />
+      /> */}
       <Box
         sx={{
           padding: '50px',
@@ -48,21 +49,31 @@ function MemberPage({ noAuth }: { noAuth?: boolean }) {
             display: 'flex',
             gap: '40px',
             alignItems: 'center',
-            justifyContent: 'flex-start',
+            justifyContent: 'space-between',
             width: '100%',
           }}
         >
-          <Avatar
-            alt={member.name}
-            src=''
+          <Box
             sx={{
-              width: '100px',
-              height: '100px',
+              display: 'flex',
+              gap: '40px',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              width: '100%',
             }}
-          />
-          <Box>
-            <Typography variant='h4'>{member.name}</Typography>
-            <Typography variant='h5'>{member.position}</Typography>
+          >
+            <Avatar
+              alt={member.name}
+              src=''
+              sx={{
+                width: '100px',
+                height: '100px',
+              }}
+            />
+            <Box>
+              <Typography variant='h4'>{member.name}</Typography>
+              <Typography variant='h5'>{member.position}</Typography>
+            </Box>
           </Box>
         </Box>
         <Card style={{ padding: '50px 50px', marginTop: '50px' }}>
@@ -77,49 +88,15 @@ function MemberPage({ noAuth }: { noAuth?: boolean }) {
             new environments.
           </Typography>
         </Card>
-        <Card style={{ padding: '50px', marginTop: '30px' }}>
-          <Typography
-            variant='h5'
-            sx={{
-              fontWeight: 'bold',
-            }}
-          >
-            My Work
-          </Typography>
-
-          {myWork.map((news) => (
-            <Box
-              key={news.title}
-              style={{
-                borderBottom: '1px solid #ccc',
-
-                padding: '10px',
-                marginTop: '15px',
-              }}
-            >
-              <Typography
-                variant='h6'
-                sx={{
-                  fontSize: '19px',
-                }}
-              >
-                {news.title}
-              </Typography>
-              <Typography
-                variant='subtitle1'
-                sx={{ color: 'gray', fontSize: '16px' }}
-              >
-                {news.date}
-              </Typography>
-              <Typography
-                variant='body1'
-                sx={{ color: 'gray', fontSize: '16px' }}
-              >
-                {news.description}
-              </Typography>
-            </Box>
-          ))}
-        </Card>
+        <PageHeader
+          title='My Work'
+          button={noAuth ? false : true}
+          buttonText='Edit'
+          // onAction={() => setOpen(true)}
+        />
+        {myWork.map((news) => (
+          <Item item={news} />
+        ))}
       </Box>
     </Box>
   );

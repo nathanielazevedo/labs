@@ -4,6 +4,7 @@ import PageHeader from '../../../components/PageHeader';
 import { useSelector } from 'react-redux';
 import EditLabInfo from './EditLabInfo';
 import { polygons } from '../../../assets';
+import Item from '../../../components/Item';
 
 function LabMain({ noAuth }: { noAuth?: boolean }) {
   const lab = useSelector((state: any) => state.lab.lab);
@@ -60,47 +61,7 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
               onAction={() => setOpen(true)}
             />
             {recentNews.map((news) => (
-              <Card style={{ padding: '0px 50px', marginTop: '15px' }}>
-                <Box
-                  key={news.title}
-                  style={{
-                    padding: '10px',
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Typography
-                    variant='h6'
-                    sx={{
-                      minWidth: '200px',
-                      width: '200px',
-                      maxWidth: '200px',
-                      fontSize: '14px',
-                    }}
-                  >
-                    {news.title}
-                  </Typography>
-                  <Typography
-                    variant='body1'
-                    sx={{
-                      color: 'gray',
-                      fontSize: '16px',
-                      justifySelf: 'flex-start',
-                      alignSelf: 'flex-start',
-                      flex: 1,
-                    }}
-                  >
-                    {news.description}
-                  </Typography>
-                  <Typography
-                    variant='subtitle1'
-                    sx={{ color: 'gray', fontSize: '16px' }}
-                  >
-                    {news.date}
-                  </Typography>
-                </Box>
-              </Card>
+              <Item item={news} />
             ))}
           </Box>
         </Box>
