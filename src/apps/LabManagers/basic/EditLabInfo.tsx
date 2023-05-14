@@ -75,7 +75,7 @@ type FormDialogPropsType = {
 
 const FormDialog = ({ close }: FormDialogPropsType) => {
   const dispatch = useAppDispatch();
-  const lab = useSelector((state: any) => state.lab.lab);
+  const lab = useSelector((state: any) => state.lab.myLab);
   const [formData, setFormData] = React.useState({
     lab_name: lab.lab_name,
     lab_description: lab.lab_description,

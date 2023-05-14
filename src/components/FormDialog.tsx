@@ -19,7 +19,7 @@ const FormDialog = ({ close }: FormDialogPropsType) => {
     name: '',
     position: '',
   });
-  const lab = useSelector((state: any) => state.lab.lab);
+  const lab = useSelector((state: any) => state.lab.myLab);
 
   const handleSubmit = () => {
     close();
