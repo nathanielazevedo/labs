@@ -81,6 +81,7 @@ const Login = () => {
             <TextField
               id='outlined-basic'
               label='Password'
+              type='password'
               variant='outlined'
               fullWidth
               onChange={(e) =>

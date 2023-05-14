@@ -4,20 +4,23 @@ import { useEffect } from 'react';
 import NoAuthTopNav from './NoAuthTopNav';
 import NoAuthSideNav from './SideNavNoAuth';
 import { useAppDispatch, useAppSelector } from '../tools/hooks';
-import { getLab } from '../features/labs/labsSlice';
+import { getOutLab } from '../features/labs/labsSlice';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
 
 const BasePage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const id = useParams<{ id: string }>().id;
-  const lab = useAppSelector((state) => state.lab.lab);
+  const lab = useAppSelector((state) => state.lab.outLab);
 
   useEffect(() => {
-    console.log(lab);
-    if (lab) return;
+    if (lab) {
+      if (lab._id === id) {
+        return;
+      }
+    }
     if (id) {
-      dispatch(getLab(id));
+      dispatch(getOutLab(id));
     } else {
       navigate('/search');
     }

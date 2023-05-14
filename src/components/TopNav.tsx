@@ -5,7 +5,7 @@ import { DarkMode, LightMode } from '@mui/icons-material';
 import { setMode } from '../features/labs/labsSlice';
 
 function TopNav() {
-  const lab = useSelector((state: any) => state.lab.lab);
+  const lab = useSelector((state: any) => state.lab.myLab);
   const dispatch = useDispatch();
   const theme = useTheme();
 

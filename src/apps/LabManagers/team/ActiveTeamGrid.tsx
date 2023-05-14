@@ -6,7 +6,9 @@ import { GridColDef } from '@mui/x-data-grid';
 import { Link as RouterLink } from 'react-router-dom';
 
 const LabMembersGrid = ({ noAuth = false }: any) => {
-  const lab = useSelector((state: any) => state.lab.lab);
+  const lab = useSelector((state: any) => {
+    return noAuth ? state.lab.outLab : state.lab.myLab;
+  });
   const rows = lab?.members ?? [];
 
   const columns: GridColDef[] = [

@@ -21,6 +21,8 @@ import CropOriginalIcon from '@mui/icons-material/CropOriginal';
 import WorkspacesIcon from '@mui/icons-material/Workspaces';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { Link } from 'react-router-dom';
+import { useAppDispatch } from '../tools/hooks';
+import { setLab } from '../features/labs/labsSlice';
 
 const drawerWidth = 240;
 
@@ -75,6 +77,7 @@ const Drawer = styled(MuiDrawer, {
 
 export default function MiniDrawer() {
   const [open, setOpen] = React.useState(false);
+  const dispatch = useAppDispatch();
 
   const handleDrawer = () => {
     open ? setOpen(false) : setOpen(true);
@@ -128,7 +131,12 @@ export default function MiniDrawer() {
                 to={getRoute(text)}
                 style={{ textDecoration: 'none', color: 'inherit' }}
                 onClick={
-                  text === 'Logout' ? () => localStorage.clear() : () => {}
+                  text === 'Logout'
+                    ? () => {
+                        localStorage.clear();
+                        dispatch(setLab(undefined));
+                      }
+                    : () => {}
                 }
               >
                 <ListItem key={text} disablePadding sx={{ display: 'block' }}>

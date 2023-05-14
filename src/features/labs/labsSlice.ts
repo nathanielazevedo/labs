@@ -3,12 +3,14 @@ import { RootState } from '../../tools/store';
 
 export interface CounterState {
   mode: string | undefined;
-  lab: any;
+  myLab: any;
+  outLab: any;
 }
 
 const initialState: CounterState = {
   mode: undefined,
-  lab: undefined,
+  myLab: undefined,
+  outLab: undefined,
 };
 
 export const getLab = createAsyncThunk('labs/fetchLab', async (id: string) => {
@@ -21,6 +23,20 @@ export const getLab = createAsyncThunk('labs/fetchLab', async (id: string) => {
   const lab = await response.json();
   return lab;
 });
+
+export const getOutLab = createAsyncThunk(
+  'labs/fetchOutLab',
+  async (id: string) => {
+    const response = await fetch(
+      `https://adventurous-teddy-cow.cyclic.app/lab/${id}`,
+      {
+        method: 'GET',
+      }
+    );
+    const lab = await response.json();
+    return lab;
+  }
+);
 
 export const updateLabBasicInfo = createAsyncThunk(
   'labs/updateLab',
@@ -79,8 +95,8 @@ export const labSlice = createSlice({
   name: 'lab',
   initialState,
   reducers: {
-    setLab: (state, action: PayloadAction<number>) => {
-      state.lab = action.payload;
+    setLab: (state, action: PayloadAction<any>) => {
+      state.myLab = action.payload;
     },
     setMode: (state) => {
       localStorage.setItem('mode', state.mode === 'light' ? 'dark' : 'light');
@@ -94,27 +110,36 @@ export const labSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getLab.pending, (state) => {
-        state.lab = undefined;
+        state.myLab = undefined;
       })
       .addCase(getLab.fulfilled, (state, action) => {
-        state.lab = action.payload;
+        state.myLab = action.payload;
       })
       .addCase(getLab.rejected, (state) => {
-        state.lab = undefined;
+        state.myLab = undefined;
+      })
+      .addCase(getOutLab.pending, (state) => {
+        state.outLab = undefined;
+      })
+      .addCase(getOutLab.fulfilled, (state, action) => {
+        state.outLab = action.payload;
+      })
+      .addCase(getOutLab.rejected, (state) => {
+        state.outLab = undefined;
       })
       .addCase(addMember.pending, (state) => {})
       .addCase(addMember.fulfilled, (state, action) => {
-        state.lab.members = [...state.lab.members, action.payload];
+        state.myLab.members = [...state.myLab.members, action.payload];
       })
       .addCase(addMember.rejected, (state) => {})
       .addCase(updateLabBasicInfo.pending, (state) => {})
       .addCase(updateLabBasicInfo.fulfilled, (state, action) => {
-        state.lab = action.payload;
+        state.myLab = action.payload;
       })
       .addCase(updateLabBasicInfo.rejected, (state) => {})
       .addCase(deleteMember.pending, (state) => {})
       .addCase(deleteMember.fulfilled, (state, action) => {
-        state.lab = action.payload;
+        state.myLab = action.payload;
       })
       .addCase(deleteMember.rejected, (state) => {});
   },

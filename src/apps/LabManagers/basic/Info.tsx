@@ -7,7 +7,9 @@ import { polygons } from '../../../assets';
 import Item from '../../../components/Item';
 
 function LabMain({ noAuth }: { noAuth?: boolean }) {
-  const lab = useSelector((state: any) => state.lab.lab);
+  const lab = useSelector((state: any) => {
+    return noAuth ? state.lab.outLab : state.lab.myLab;
+  });
   const [open, setOpen] = React.useState(false);
 
   if (!lab) return <></>;

@@ -8,7 +8,9 @@ import Item from '../../../components/Item';
 function MemberPage({ noAuth }: { noAuth?: boolean }) {
   const memberId = useParams<{ memberId: string }>().memberId;
   const [member, setMember] = React.useState<any>();
-  const lab = useSelector((state: any) => state.lab?.lab);
+  const lab = useSelector((state: any) => {
+    return noAuth ? state.lab.outLab : state.lab.myLab;
+  });
 
   useEffect(() => {
     if (!lab) return;

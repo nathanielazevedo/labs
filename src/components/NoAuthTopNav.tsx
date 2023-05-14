@@ -16,8 +16,7 @@ import Breadcrumbs from '@mui/material/Breadcrumbs';
 function TopNav() {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const lab = useSelector((state: any) => state.lab.lab);
-  console.log(theme.palette);
+  const lab = useSelector((state: any) => state.lab.outLab);
 
   return (
     <AppBar

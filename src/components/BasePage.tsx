@@ -10,11 +10,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 const BasePage = () => {
   const dispatch = useAppDispatch();
   let navigate = useNavigate();
-  const lab = useAppSelector((state) => state.lab.lab);
+  const lab = useAppSelector((state) => state.lab.myLab);
 
   useEffect(() => {
     if (lab) return;
     const labLocal = localStorage.getItem('user');
+    console.log(labLocal);
     if (labLocal) {
       const id = JSON.parse(labLocal)._id;
       dispatch(getLab(id));

@@ -10,7 +10,6 @@ const Search = () => {
   React.useEffect(() => {
     const fetchLabs = async () => {
       const labs = await Lab.getLabs();
-      console.log(labs);
       setLabs(labs);
     };
     fetchLabs();
