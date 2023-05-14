@@ -1,5 +1,4 @@
-import { Card, Typography, Box } from '@mui/material';
-import React from 'react';
+import { Box } from '@mui/material';
 import PageHeader from '../../../components/PageHeader';
 import Item from '../../../components/Item';
 
