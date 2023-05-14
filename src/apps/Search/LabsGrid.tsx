@@ -30,6 +30,7 @@ export default function DataTable({ rows }: any) {
         disableColumnMenu
         disableColumnFilter
         getRowId={(row) => row._id}
+        loading={rows.length === 0}
         onRowClick={(row) => {
           navigate(`/lab/${row.row._id}`);
         }}

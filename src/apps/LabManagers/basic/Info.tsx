@@ -50,8 +50,8 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
         }}
       >
         <Box>
-          <Card style={{ padding: '50px 50px' }}>
-            <Typography>{lab.lab_description}</Typography>
+          <Card style={{ padding: '40px 50px' }} elevation={2}>
+            <Typography variant='subtitle1'>{lab.lab_description}</Typography>
           </Card>
           <Box>
             <PageHeader
