@@ -1,5 +1,7 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
+import { getLab } from '../../features/labs/labsSlice';
+import { useAppDispatch } from '../../tools/hooks';
 
 const columns: GridColDef[] = [
   {
@@ -20,6 +22,7 @@ const columns: GridColDef[] = [
 
 export default function DataTable({ rows }: any) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   return (
     <div style={{ height: 750, width: '900px' }}>
       <DataGrid
@@ -32,6 +35,7 @@ export default function DataTable({ rows }: any) {
         getRowId={(row) => row._id}
         loading={rows.length === 0}
         onRowClick={(row) => {
+          dispatch(getLab(row.row._id));
           navigate(`/lab/${row.row._id}`);
         }}
         sx={{
