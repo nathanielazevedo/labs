@@ -66,15 +66,16 @@ function MemberPage({ noAuth }: { noAuth?: boolean }) {
           >
             <Avatar
               alt={member.name}
-              src=''
+              src='https://randomuser.me/api/portraits/men/1.jpg'
               sx={{
-                width: '100px',
-                height: '100px',
+                width: '150px',
+                height: '150px',
               }}
             />
             <Box>
               <Typography variant='h4'>{member.name}</Typography>
               <Typography variant='h5'>{member.position}</Typography>
+              <Typography variant='h6'>email@email.com</Typography>
             </Box>
           </Box>
         </Box>
