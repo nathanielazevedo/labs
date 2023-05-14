@@ -5,6 +5,7 @@ type PageHeaderProps = {
   button: boolean;
   onAction?: (action: string) => void;
   buttonText?: string;
+  noPadding?: boolean;
 };
 
 const PageHeader = ({
@@ -12,6 +13,7 @@ const PageHeader = ({
   button,
   onAction,
   buttonText,
+  noPadding,
 }: PageHeaderProps) => {
   return (
     <Box
@@ -19,7 +21,7 @@ const PageHeader = ({
       flexDirection='row'
       width='100%'
       justifyContent='space-between'
-      padding='20px 25px 0 20px'
+      padding={noPadding ? '20px 0px 0 0px' : '20px 25px 0 20px'}
       alignItems='flex-end'
     >
       <Typography variant='h6' fontWeight='bold' alignSelf='flex-end'>

@@ -92,6 +92,7 @@ function MemberPage({ noAuth }: { noAuth?: boolean }) {
           title='My Work'
           button={noAuth ? false : true}
           buttonText='Edit'
+          noPadding
           // onAction={() => setOpen(true)}
         />
         {myWork.map((news) => (

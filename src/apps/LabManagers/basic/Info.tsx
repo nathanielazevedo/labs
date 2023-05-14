@@ -50,7 +50,7 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
         }}
       >
         <Box>
-          <Card style={{ padding: '40px 50px' }} elevation={2}>
+          <Card style={{ padding: '40px 50px' }} elevation={1}>
             <Typography variant='subtitle1'>{lab.lab_description}</Typography>
           </Card>
           <Box>
@@ -59,6 +59,7 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
               button={noAuth ? false : true}
               buttonText='Edit'
               onAction={() => setOpen(true)}
+              noPadding
             />
             {recentNews.map((news) => (
               <Item item={news} />
