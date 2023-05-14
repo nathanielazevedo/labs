@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import EditLabInfo from './EditLabInfo';
 import { polygons } from '../../../assets';
 import Item from '../../../components/Item';
+import Question from '../../../components/Question';
 
 function LabMain({ noAuth }: { noAuth?: boolean }) {
   const lab = useSelector((state: any) => {
@@ -13,7 +14,7 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
   const [open, setOpen] = React.useState(false);
 
   if (!lab) return <></>;
-  console.log('loaded');
+
   const recentNews = [
     {
       title: 'New Lab Manager',
@@ -29,6 +30,30 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
       title: 'New Funding',
       date: '2021-10-10',
       description: 'New funding from the National Science Foundation',
+    },
+    {
+      title: 'New Publication',
+      date: '2021-10-10',
+      description: 'New paper published in the Journal of Science',
+    },
+    {
+      title: 'New Funding',
+      date: '2021-10-10',
+      description: 'New funding from the National Science Foundation',
+    },
+  ];
+  const questions = [
+    {
+      description:
+        'Why is light so fast? We seek to answer this question and more in our lab and describe the speed of light in a vacuum as a constant that is independent of the motion of the emitting body.',
+    },
+    {
+      description:
+        'How do we measure the speed of light? We seek to answer this question and more in our lab and describe the speed of light in a vacuum as a constant that is independent of the motion of the emitting body.',
+    },
+    {
+      description:
+        'How do we measure the speed of light? We seek to answer this question and more in our lab and describe the speed of light in a vacuum as a constant that is independent of the motion of the emitting body.',
     },
   ];
 
@@ -55,6 +80,29 @@ function LabMain({ noAuth }: { noAuth?: boolean }) {
           <Card style={{ padding: '40px 50px' }} elevation={1}>
             <Typography variant='subtitle1'>{lab.lab_description}</Typography>
           </Card>
+          <Box>
+            <PageHeader
+              title='Questions We Ask'
+              button={noAuth ? false : true}
+              buttonText='Edit'
+              onAction={() => setOpen(true)}
+              noPadding
+            />
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                padding: '0px 0px',
+                width: '100%',
+                gap: '20px',
+                marginTop: '15px',
+              }}
+            >
+              {questions.map((news) => (
+                <Question item={news} />
+              ))}
+            </Box>
+          </Box>
           <Box>
             <PageHeader
               title='Recent News'
