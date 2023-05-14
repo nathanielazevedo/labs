@@ -1,6 +1,6 @@
 import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { useNavigate } from 'react-router-dom';
-import { getLab, getOutLab } from '../../features/labs/labsSlice';
+import { getOutLab } from '../../features/labs/labsSlice';
 import { useAppDispatch } from '../../tools/hooks';
 
 const columns: GridColDef[] = [
