@@ -32,6 +32,9 @@ const Item = ({ item }: any) => {
               minWidth: '700px',
               width: '700px',
               maxWidth: '700px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
 
               flex: 1,
             }}
